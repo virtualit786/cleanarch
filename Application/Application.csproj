@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Common\Behavious\" />
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Common\Interfaces\" />
+    <Folder Include="Common\Mappings\" />
+    <Folder Include="Common\Models\" />
+    <Folder Include="TodoLists\" />
+    <Folder Include="TodoLists\Commands\" />
+    <Folder Include="TodoLists\Queries\" />
+  </ItemGroup>
+</Project>
