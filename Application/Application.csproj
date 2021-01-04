@@ -15,4 +15,10 @@
     <Folder Include="TodoLists\Commands\" />
     <Folder Include="TodoLists\Queries\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
 </Project>
