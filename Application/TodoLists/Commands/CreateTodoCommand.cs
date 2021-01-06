@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.TodoLists.Commands
 {
-    public class CreateTodoCommand : IRequest<TodoDto>
+    public class CreateTodoCommand : IRequest<CreateTodoCommandResult>
     {
         public CreateTodoCommand(string title, string description, bool isDone)
         {
