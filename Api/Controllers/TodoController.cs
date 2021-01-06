@@ -45,11 +45,17 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<TodoDto>> Add([FromBody] CreateTodoCommand command)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public async Task<ActionResult<CreateTodoCommandResult>> Add([FromBody] CreateTodoCommand command)
+        public async Task<IActionResult> Add(CreateTodoCommand command)
         {
             try
             {
-                return Ok(await _mediator.Send(command));
+                //return Ok(await _mediator.Send(command));
+                var result = await _mediator.Send(command);
+                return base.Created($"api/Todo/{result.Payload.Id}", result);
+
             }
             catch (Exception ex)
             {
