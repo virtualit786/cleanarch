@@ -3,13 +3,13 @@ using MediatR;
 
 namespace Application.TodoLists.Commands
 {
-    public class DeleteTodoCommand: IRequest<bool>
+    public class DeleteTodoCommand: IRequest<DeleteTodoCommandResult>
     {
-        public DeleteTodoCommand(string id)
+        public DeleteTodoCommand(Guid id)
         {
             Id = id;
         }
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
     }
 }

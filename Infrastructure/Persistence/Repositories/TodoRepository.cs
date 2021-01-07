@@ -22,9 +22,10 @@ namespace Infrastructure.Persistence.Repositories
             return todo;
         }
 
-        public Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            await Task.Delay(100);
+            return true;
         }
 
         public async Task<Todo> Get(Guid id)
@@ -55,9 +56,10 @@ namespace Infrastructure.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Todo> Update(Todo todo)
+        public async Task<Todo> Update(Todo todo)
         {
-            throw new NotImplementedException();
+            await Task.Delay(100);
+            return todo;
         }
     }
 }

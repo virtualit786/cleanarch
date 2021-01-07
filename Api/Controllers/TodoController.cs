@@ -63,6 +63,56 @@ namespace Api.Controllers
             }
         }
 
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update(UpdateTodoCommand command)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return base.BadRequest(ModelState);
+                }
+                var result = await _mediator.Send<UpdateTodoCommandResult>(command);
+                if (result != null)
+                {
+                    return base.Ok(result);
+                }
+                return base.NotFound();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            try
+            {
+                if (id == Guid.Empty)
+                {
+                    //return base.BadRequest($"{id} is empty!");
+                    return base.BadRequest("Id is empty!");
+                }
+                var result = await _mediator.Send(new DeleteTodoCommand(id));
+
+                return base.Ok("Successfully Deleted!");
+            }
+            catch (ArgumentException)
+            {
+                return base.NotFound($"Id {id} not found!");
+            }
+            //Sir code review of previous tasks is also remaining
+        }
+
     }
 }
 

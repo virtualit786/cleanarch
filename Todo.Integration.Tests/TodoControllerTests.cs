@@ -27,7 +27,7 @@ namespace Todo.Integration.Tests
 
         [Fact]
         public async Task GetPublicHealthEndpoint()
-        {            
+        {
             var apiResponse = await TestClient.GetAsync($"/Todo/{Guid.NewGuid()}");
             apiResponse.EnsureSuccessStatusCode();
             Assert.True(apiResponse.IsSuccessStatusCode);
@@ -54,5 +54,36 @@ namespace Todo.Integration.Tests
             response.EnsureSuccessStatusCode();
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
+
+        [Fact]
+        public async Task UpdateTodo()
+        {
+            var response = await TestClient.PutAsync("/Todo"
+                , new StringContent(
+                    JsonConvert.SerializeObject(
+                        new UpdateTodoCommand
+                        (
+                            Guid.NewGuid(),
+                            "task title 1",
+                            "Description of title 1",
+                            false
+                            )
+                        ),
+                    Encoding.UTF8,
+                    "application/json"));
+
+            response.EnsureSuccessStatusCode();
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public async Task DeleteTodo()
+        {
+            var response = await TestClient.DeleteAsync($"/Todo/{Guid.NewGuid()}");
+            Console.WriteLine("DeleteTodo => " + response);
+            response.EnsureSuccessStatusCode();
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
     }
 }

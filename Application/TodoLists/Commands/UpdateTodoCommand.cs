@@ -4,9 +4,9 @@ using MediatR;
 
 namespace Application.TodoLists.Commands
 {
-    public class UpdateTodoCommand : IRequest<TodoDto>
+    public class UpdateTodoCommand : IRequest<UpdateTodoCommandResult>
     {
-        public UpdateTodoCommand(string id, string title, string description, bool isDone)
+        public UpdateTodoCommand(Guid id, string title, string description, bool isDone)
         {
             Id = id;
             Title = title;
@@ -14,7 +14,7 @@ namespace Application.TodoLists.Commands
             IsDone = isDone;
         }
 
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsDone { get; set; }
