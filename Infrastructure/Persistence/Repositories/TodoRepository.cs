@@ -25,6 +25,7 @@ namespace Infrastructure.Persistence.Repositories
             //todos.Add(todo);
             //return todo;
             var entity = await _efContext.Todos.AddAsync(todo);
+            Console.WriteLine("Todo::Add entity created");
             return entity.Entity;
         }
 
@@ -53,11 +54,6 @@ namespace Infrastructure.Persistence.Repositories
             //    return new Todo { Title = "task title 1", Id = id, Description = "Description of title 1", CreatedOn = new DateTime(), IsDone = false, ModifiedOn = new DateTime() };
             //}
             return await _efContext.Todos.FirstOrDefaultAsync(t => t.Id.Equals(id));
-        }
-
-        public Task<List<Todo>> Get()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<bool> SaveChanges()

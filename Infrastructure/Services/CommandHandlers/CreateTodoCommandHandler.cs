@@ -24,7 +24,7 @@ namespace Infrastructure.Services.CommandHandlers
         {
             var todo = _mapper.Map<Todo>(request);
             var entity = await _todoRepository.Add(todo);
-            //await _todoRepository.SaveChanges();
+            await _todoRepository.SaveChanges();
             //return _mapper.Map<TodoDto>(entity);
             return new CreateTodoCommandResult()
             {

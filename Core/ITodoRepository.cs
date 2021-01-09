@@ -12,7 +12,6 @@ namespace Core
         Task<bool> Delete(Guid id);
         Task<Todo> Get(Guid id);
         Task<List<Todo>> Search(string term);
-        Task<List<Todo>> Get();
         Task<bool> SaveChanges();
     }
 }

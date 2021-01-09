@@ -26,7 +26,7 @@ namespace Infrastructure.Services.CommandHandlers
             {
                 var todo = _mapper.Map<Todo>(request);
                 var entity = await _todoRepository.Update(todo);
-                //await _todoRepository.SaveChanges();
+                await _todoRepository.SaveChanges();
                 if (entity != null)
                 {
                     return new UpdateTodoCommandResult()
